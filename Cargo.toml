@@ -4,3 +4,21 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+async-trait = "0.1" # 让 trait 里可以写 async fn
+bytes = "1" # 用来表示 HTTP 响应体的字节数据
+pingora = { version = "0.8", features = ["rustls"] } # Pingora 总入口依赖
+pingora-core = { version = "0.8", features = ["rustls"] } # Pingora 服务启动核心
+pingora-http = "0.8" # Pingora 的 HTTP 请求/响应类型
+pingora-proxy = { version = "0.8", features = ["rustls"] } # Pingora 的 HTTP 代理服务框架
+clap = { version = "4", features = ["derive"] } # 用来解析命令行参数
+anyhow = "1" # 简化错误处理，让函数可以方便返回各种错误
+serde = { version = "1", features = ["derive"] } # 把 YAML/JSON 转成 Rust 结构体
+serde_yaml = "0.9"
+tokio = { version = "1", features = ["fs"] } # 用来异步读取静态文件
+indexmap = { version = "2", features = ["serde"] } # 有序 Map，用来保存 proxy 路由顺序
+url = "2" # 用来解析 http://127.0.0.1:4000 这种 URL
+tracing = "0.1" # 结构化日志门面，代码里用 tracing::info! 等宏
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] } # 支持 RUST_LOG 和 JSON 日志
+http = "1" # 使用标准 HTTP 类型校验 HeaderName 和 HeaderValue
+base64 = "0.22" # 用来解析 Basic Auth 里的 base64(username:password)
+
